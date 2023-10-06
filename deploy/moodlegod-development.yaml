@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: moodlegod-development
+  labels:
+    app: moodlegod-development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: moodlegod
+  template:
+    metadata:
+      labels:
+        name: moodlegod
+        app.kubernetes.io/name: moodlegod
+    spec:
+      containers:
+      - name: moodlegod-development
+        image: lapkicorp/moodlegod:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+      restartPolicy: Always
